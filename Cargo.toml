@@ -1,0 +1,11 @@
+[package]
+name = "dav_save_tool"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+flate2 = "1.0.34"
+clap = { version = "4.5.20", features = ["derive"] }
+
+[profile.release]
+strip = true
