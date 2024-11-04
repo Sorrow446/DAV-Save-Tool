@@ -3,9 +3,7 @@ Tool to read and manipulate Bioware's CSAV save files used in Dragon Age: Veilgu
 ![](https://i.imgur.com/g1fyuB4.png)    
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
-## Commands
-**Plus subscription required.**    
-
+## Commands  
 |Name|Description|Example|
 | --- | --- | --- |
 |dump-blocks|Parses and decompresses all blocks, then writes them locally.|`davst.exe dump-blocks -i "0-440065 Kalais-Save 5 #82.csav"`
