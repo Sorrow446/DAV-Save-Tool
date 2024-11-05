@@ -1,5 +1,5 @@
 # DAV-Save-Tool
-Tool to read and manipulate Bioware's CSAV save files used in Dragon Age: Veilguard.
+Tool to read and manipulate BioWare's CSAV save files used in Dragon Age: Veilguard.
 ![](https://i.imgur.com/g1fyuB4.png)    
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
