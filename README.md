@@ -64,6 +64,6 @@ Goal is to be able to inject others' appeances into other saves. The game can on
 ```
 
 ## Some notes
-- Body proportions are stored as f32s, but the game clamps them to 1 so setting them out of range in your save won't work. Modifying the floats in Frosty Editor doesn't seem to work either.
+- Body proportions are stored as f32s, but the game clamps them to 1 so setting them out of range in your save won't work. Modifying the floats' boundaries in Frosty Editor doesn't seem to work either.
 - The metadata's stored in the first block. It contains stuff like char name, level, playtime.
 - The appearance data's stored in the second block.
