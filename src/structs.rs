@@ -1,5 +1,7 @@
 use std::path::PathBuf;
-use clap::{Parser, ValueEnum};
+use clap::Parser;
+use crate::enums::Cmd;
+
 #[derive(Parser)]
 #[command(name = "DAV save tool")]
 pub struct Args {
@@ -17,9 +19,4 @@ pub struct Config {
     pub in_path: PathBuf,
     pub out_path: PathBuf,
     pub command: Cmd,
-}
-
-#[derive(ValueEnum, Clone, Debug)]
-pub enum Cmd {
-    DumpBlocks,
 }
