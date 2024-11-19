@@ -1,5 +1,5 @@
 # DAV-Save-Tool
-CLI tool to read and manipulate BioWare's save files used in Dragon Age: Veilguard.
+CLI tool to read and manipulate BioWare's save files used in Dragon Age: The Veilguard.
 ![](https://i.imgur.com/LFSuStJ.png)    
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
