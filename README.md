@@ -9,7 +9,7 @@ CLI tool to read and manipulate BioWare's save files used in Dragon Age: The Vei
 | --- | --- | --- | --- | --- |
 |dump-blocks/db|Parses and decompresses all blocks, then writes them locally.|`davst.exe db -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
 |dump-metadata/dm|Parses the metadata block and writes it to a JSON file.|`davst.exe dm -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
-|inject-appearance/dm|Extracts the appearance data from the source save file and injects it into the destination save. Everything like story progression, inventory etc. will be retained in the source save. **Genders and races must match.**|`davst.exe ia -i "0-439076 decision0.csav" "0-440065 Kalais-Save 5 #82.csav"`|Path of source save file with the apperance data you want to inject.|Path of the destination save file to be injected into.|
+|inject-appearance/dm|Extracts the appearance data from the source save file and injects it into the destination save. Everything like story progression, inventory etc. will be retained in the source save. **Genders and races must match.**|`davst.exe ia -i "0-439076 decision0.csav" -o "0-440065 Kalais-Save 5 #82.csav"`|Path of source save file with the apperance data you want to inject.|Path of the destination save file to be injected into.|
 
 ## Goal
 ~~Goal is to be able to inject others' appeances into other saves. The game can only do this at the start of a new save.~~    
