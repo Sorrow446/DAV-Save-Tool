@@ -1,16 +1,19 @@
 # DAV-Save-Tool
 CLI tool to read and manipulate BioWare's save files used in Dragon Age: The Veilguard.
-![](https://i.imgur.com/LFSuStJ.png)    
+![](https://i.imgur.com/NcP1iin.png)
+![](https://i.imgur.com/McIA6HY.png)    
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
 ## Commands  
-|Name|Description|Example|
-| --- | --- | --- |
-|dump-blocks|Parses and decompresses all blocks, then writes them locally.|`davst.exe dump-blocks -i "0-440065 Kalais-Save 5 #82.csav"`
-|dump-metadata|Parses the metadata block and writes it to a JSON file.|`davst.exe dump-metadata -i "0-440065 Kalais-Save 5 #82.csav"`
+|Name|Description|Example|Input|Output|
+| --- | --- | --- | --- | --- |
+|dump-blocks/db|Parses and decompresses all blocks, then writes them locally.|`davst.exe db -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
+|dump-metadata/dm|Parses the metadata block and writes it to a JSON file.|`davst.exe dm -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
+|inject-appearance/dm|Extracts the appearance data from the source save file and injects it into the destination save. Everything like story progression, inventory etc. will be retained in the source save. **Genders and races must match.**|`davst.exe ia -i "0-439076 decision0.csav" "0-440065 Kalais-Save 5 #82.csav"`|Path of source save file with the apperance data you wan't to inject.|Path of the destination save file to be injected into.|
 
 ## Goal
-Goal is to be able to inject others' appeances into other saves. The game can only do this at the start of a new save.
+~~Goal is to be able to inject others' appeances into other saves. The game can only do this at the start of a new save.~~    
+Done :).
 
 ## Example meta output
 ```json
@@ -63,7 +66,6 @@ Goal is to be able to inject others' appeances into other saves. The game can on
 }
 ```
 
-## Some notes
-- Body proportions are stored as f32s, but the game clamps them to 1 so setting them out of range in your save won't work. Modifying the floats' boundaries in Frosty Editor doesn't seem to work either.
-- The metadata's stored in the first block. It contains stuff like char name, level, playtime.
-- The appearance data's stored in the second block. It also contains the player's inventory.
+# Disclaimer   
+- I won't be responsible for the rare chance of your saves getting corrupted. Absolutely back them up.
+- DAVST has no partnership, sponsorship or endorsement with BioWare.
