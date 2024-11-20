@@ -5,7 +5,6 @@ use uuid::Uuid;
 use crate::bw_save_game_metadata_reader::structs::*;
 use crate::bw_save_game_metadata_reader::enums::*;
 
-
 impl BWSaveGameMetadataReader {
     pub(crate) fn new(data: Vec<u8>) -> Self {
         Self {
@@ -187,6 +186,7 @@ impl BWSaveGameMetadataReader {
                     let key_binding_profile = KeyBindingProfile::from_u32(v)
                         .ok_or(format!("Unknown KeyBindingProfile: {}", v))?;
                     meta.key_binding_profile = key_binding_profile;
+                    self.seek_from_current(1)?;
                 }
                 "level" => {
                     meta.character_level = self.read_u32_le()?;

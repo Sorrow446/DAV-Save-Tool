@@ -4,8 +4,7 @@ use std::io::{BufReader, Read, Seek};
 use flate2::bufread::GzDecoder;
 use crate::bw_save_game_reader::structs::*;
 
-// <!--DASC
-const MAGIC: &[u8; 8] = b"<!--DASC";
+pub(crate) const MAGIC: &[u8; 8] = b"<!--DASC";
 
 // Vec buf needed because of dyn sizes.
 impl<R: Read + Seek> BWSaveGameReader<R> {
