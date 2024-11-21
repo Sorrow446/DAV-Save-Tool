@@ -12,6 +12,7 @@ impl BWSaveGameClientDataReader {
             char_data_size: 0,
             char_data_offset: 0,
             server_offset: 0,
+            server_offset_is_two_bytes: false,
 
         }
     }
@@ -49,7 +50,6 @@ impl BWSaveGameClientDataReader {
     }
 
      fn seek_to_char_data(&mut self) -> Result<(), Box<dyn Error>>{
-        self.seek_from_start(32)?;
 
         for _ in 0..2 {
             let marker = self.read_u8()?;
@@ -71,11 +71,22 @@ impl BWSaveGameClientDataReader {
 
     pub(crate) fn read_char_data(&mut self) -> Result<(), Box<dyn Error>> {
         self.seek_from_start(12)?;
-        let server_offset = self.read_bytes(3)?;
+
+
+        let arr = self.read_bytes(4)?;
+
+        let is_two_bytes = arr[3] == 0x63;
+
+        let server_offset_len = if is_two_bytes { 2 } else { 3 };
+
         // 0x02 server
-        let unshifted_server_offset = Self::unshift_size(server_offset);
+        let unshifted_server_offset = Self::unshift_size(&arr[..server_offset_len]);
 
+        self.seek_from_current(14)?;
 
+        if !is_two_bytes {
+            self.seek_from_current(2)?;
+        }
 
         self.seek_to_char_data()?;
         let char_data_offset = self.c.stream_position()?;
@@ -86,6 +97,7 @@ impl BWSaveGameClientDataReader {
         }
 
         let shifted_size = self.read_bytes(3)?;
+
         let unshifted_size = Self::unshift_size(shifted_size);
         self.seek_from_current(-4)?;
 
@@ -96,6 +108,7 @@ impl BWSaveGameClientDataReader {
         self.char_data_offset = char_data_offset;
         self.char_data_size = unshifted_size;
         self.server_offset = unshifted_server_offset;
+        self.server_offset_is_two_bytes = is_two_bytes;
 
         Ok(())
     }

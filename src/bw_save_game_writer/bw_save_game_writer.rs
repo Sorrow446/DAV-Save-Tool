@@ -64,8 +64,15 @@ impl BWSaveGameWriter<File> {
             dest_data_r.read_char_data()?;
 
             let head = dest_block_data[..dest_data_r.char_data_offset as usize].to_vec();
+
             let end_of_char_data_offset = (dest_data_r.char_data_offset + dest_data_r.char_data_size as u64) + 4;
-            let tail = dest_block_data[end_of_char_data_offset as usize..].to_vec();
+
+            let mut tail = dest_block_data[end_of_char_data_offset as usize..].to_vec();
+
+            let tail_byte_needed = tail[1] == 0x02;
+            if  tail_byte_needed {
+                tail.insert(0, 0x0);
+            }
 
             let mut final_data: Vec<u8> = Vec::new();
 
@@ -73,14 +80,25 @@ impl BWSaveGameWriter<File> {
             final_data.extend_from_slice(&src_data_r.char_data);
             final_data.extend_from_slice(&tail);
 
-            let final_size = final_data.len() - 4;
-            let size_bytes = Self::shift_chunk_size(final_size as u32);
+            let mut server_offset = dest_data_r.server_offset as usize - dest_data_r.char_data_size as usize + src_data_r.char_data.len() - 4;
+            if tail_byte_needed {
+                server_offset += 1;
+            }
 
-            let server_offset = dest_data_r.server_offset as usize - dest_data_r.char_data_size as usize + src_data_r.char_data.len() - 4;
+            let mut final_size = final_data.len() - 4;
+            if dest_data_r.server_offset_is_two_bytes {
+                final_data.insert(12, 0x0);
+                final_data.insert(29, 0x0);
+                final_size += 2;
+                server_offset += 1;
+            }
+
             let server_data_offset_shifted = Self::shift_chunk_size(server_offset as u32);
             let contrib_offset = server_offset - 18;
 
             let contrib_shifted = Self::shift_chunk_size(contrib_offset as u32);
+
+            let size_bytes = Self::shift_chunk_size(final_size as u32);
 
             final_data[1..4].copy_from_slice(&size_bytes);
             final_data[12..15].copy_from_slice(&server_data_offset_shifted);

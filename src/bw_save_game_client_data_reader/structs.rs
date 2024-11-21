@@ -7,4 +7,5 @@ pub struct BWSaveGameClientDataReader {
     pub(crate) char_data_offset: u64,
     pub(crate) char_data_size: u32,
     pub(crate) server_offset: u32,
+    pub(crate) server_offset_is_two_bytes: bool,
 }
