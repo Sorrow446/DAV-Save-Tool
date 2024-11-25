@@ -2,9 +2,11 @@
 CLI tool to read and manipulate BioWare's save files used in Dragon Age: The Veilguard.
 ![](https://i.imgur.com/NcP1iin.png)
 ![](https://i.imgur.com/McIA6HY.png)    
+![](https://i.imgur.com/HfaqzBJ.png)    
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
 ## Commands  
+A GUI is now available for the inject appearance command.
 |Name|Description|Example|Input|Output|
 | --- | --- | --- | --- | --- |
 |dump-blocks/db|Parses and decompresses all blocks, then writes them locally.|`davst.exe db -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
