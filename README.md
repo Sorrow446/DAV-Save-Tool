@@ -6,7 +6,7 @@ CLI tool to read and manipulate BioWare's save files used in Dragon Age: The Vei
 [Pre-compiled binaries](https://github.com/Sorrow446/DAV-Save-Tool/releases)
 
 ## Commands  
-A GUI is now available for the inject appearance command.
+A GUI is now available for the inject appearance command [here](https://github.com/Sorrow446/DAV-Save-Tool/releases/tag/v1-gui).
 |Name|Description|Example|Input|Output|
 | --- | --- | --- | --- | --- |
 |dump-blocks/db|Parses and decompresses all blocks, then writes them locally.|`davst.exe db -i "0-440065 Kalais-Save 5 #82.csav"`|Path of save file.|Path of an output folder or none for current dir.|
